@@ -11,5 +11,7 @@
             "name": "aroldm"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.0"
+    }
 }
