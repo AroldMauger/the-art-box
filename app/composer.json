@@ -1,0 +1,15 @@
+{
+    "name": "aroldm/theartbox",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Aroldm\\Theartbox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aroldm"
+        }
+    ],
+    "require": {}
+}
