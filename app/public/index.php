@@ -2,7 +2,6 @@
 
     global $oeuvres;
     require_once '../vendor/autoload.php';
-    require_once 'oeuvres.php';
     require_once '../src/Controller/OeuvreController.php';
 
     $loader = new \Twig\Loader\FilesystemLoader('../src/Views');
@@ -16,7 +15,7 @@
         $controller->index();
     });
 
-    $router->map('GET', '/oeuvre/[i:oeuvre]', function($id) use ($controller) {
+    $router->map('GET', '/oeuvre/[i:id]', function($id) use ($controller) {
         $controller->show($id);
     });
 

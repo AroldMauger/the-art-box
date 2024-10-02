@@ -9,13 +9,13 @@ class OeuvreController {
     }
     public function show($id) {
         $oeuvres = include('oeuvres.php');
-        foreach ($oeuvres as $oeuvre) {
-            if ($id == $oeuvre['id']) {
-                $o = $oeuvre;
+        foreach ($oeuvres as $o) {
+            if ($id == $o['id']) {
+                $oeuvre = $o;
                 break;
             }
         }
-        echo $this->twig->render("oeuvre.html.twig");
+        echo $this->twig->render("oeuvre.html.twig", ['oeuvre' => $oeuvre]);
     }
 
     public function index() {

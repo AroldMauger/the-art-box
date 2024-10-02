@@ -107,5 +107,5 @@ $oeuvres = [
         'description' => 'Adelheid Von Schreiber est une artiste allemande qui vit à Berlin. Son œuvre Blaue Gelbe Muster ("motifs bleus et jaunes" en allemand) est une représentation de la géométrie et de l\'abstraction. Les couleurs vives et les formes géométriques de cette peinture à l\'acrylique évoquent la rigueur et la précision des formes. Les nuances de bleu, de jaune et de blanc créent une atmosphère lumineuse et chatoyante.',
     ]
 ];
-
+return $oeuvres;
 ?>

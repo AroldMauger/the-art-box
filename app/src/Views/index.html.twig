@@ -4,7 +4,7 @@
         {% for oeuvre in oeuvres %}
 
             <article class="oeuvre">
-                <a href="oeuvre.html.twig?id={{oeuvre.id }}">
+                <a href="/oeuvre/{{ oeuvre.id }}">
                     <img src="{{ oeuvre.img }}" alt="{{ oeuvre.titre }}">
                     <h2>{{ oeuvre.titre }}</h2>
                     <p class="description">{{ oeuvre.description }}</p>
