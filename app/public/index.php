@@ -1,13 +1,33 @@
 <?php
 
-global $oeuvres;
-require_once '../vendor/autoload.php';
-require_once 'oeuvres.php';
+    global $oeuvres;
+    require_once '../vendor/autoload.php';
+    require_once 'oeuvres.php';
+    require_once '../src/Controller/OeuvreController.php';
 
-$loader = new \Twig\Loader\FilesystemLoader('/');
-$twig = new \Twig\Environment($loader);
+    $loader = new \Twig\Loader\FilesystemLoader('../src/Views');
+    $twig = new \Twig\Environment($loader);
 
-$template = $twig->load('index.html.twig');
-echo $template->render(['oeuvres' => $oeuvres]);
+    $router = new AltoRouter();
 
-?>
+    $controller = new OeuvreController($twig);
+
+    $router->map('GET', '/', function() use ($controller){
+        $controller->index();
+    });
+
+    $router->map('GET', '/oeuvre/[i:oeuvre]', function($id) use ($controller) {
+        $controller->show($id);
+    });
+
+
+
+$match = $router->match();
+
+if ($match && is_callable($match['target'])) {
+    call_user_func_array($match['target'], $match['params']);
+} else {
+    // Aucune route trouvée
+    header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    echo '404 Not Found';
+}

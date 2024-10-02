@@ -1,0 +1,16 @@
+{% include 'header.html.twig' %}
+<main>
+    <div id="liste-oeuvres">
+        {% for oeuvre in oeuvres %}
+
+            <article class="oeuvre">
+                <a href="oeuvre.html.twig?id={{oeuvre.id }}">
+                    <img src="{{ oeuvre.img }}" alt="{{ oeuvre.titre }}">
+                    <h2>{{ oeuvre.titre }}</h2>
+                    <p class="description">{{ oeuvre.description }}</p>
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+</main>
+{% include 'footer.html.twig' %}
