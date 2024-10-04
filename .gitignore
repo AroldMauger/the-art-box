@@ -1,1 +1,3 @@
 mysqldata
+.env
+.env.dist

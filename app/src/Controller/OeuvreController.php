@@ -9,11 +9,15 @@ class OeuvreController {
     }
     public function show($id) {
         $oeuvres = include('oeuvres.php');
+        $oeuvre = null;
         foreach ($oeuvres as $o) {
             if ($id == $o['id']) {
                 $oeuvre = $o;
                 break;
             }
+        }
+        if($oeuvre=null) {
+            return header('Location: /');
         }
         echo $this->twig->render("oeuvre.html.twig", ['oeuvre' => $oeuvre]);
     }
