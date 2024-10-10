@@ -26,4 +26,10 @@ class OeuvreController {
         $oeuvres = include('oeuvres.php');
         echo $this->twig->render("index.html.twig", ['oeuvres' => $oeuvres]);
     }
+
+    public function displayForm() {
+        $oeuvres = include('oeuvres.php');
+
+        echo $this->twig->render("add.html.twig", ['oeuvres' => $oeuvres]);
+    }
 }

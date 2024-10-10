@@ -15,6 +15,10 @@
         $controller->index();
     });
 
+    $router->map('GET', '/add', function() use ($controller){
+        $controller->displayForm();
+    });
+
     $router->map('GET', '/oeuvre/[i:id]', function($id) use ($controller) {
         $controller->show($id);
     });

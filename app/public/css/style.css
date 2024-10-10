@@ -31,6 +31,8 @@ header ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    gap: 20px;
 }
 
 main {
@@ -98,6 +100,40 @@ footer {
     max-width: 470px;
 }
 
+form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 10px;
+}
+
+.champ-formulaire {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+form input, form textarea {
+    padding: 7px;
+}
+
+form textarea {
+    height: 150px;
+}
+
+input[type="submit"] {
+    margin: auto;
+    color: white;
+    background: black;
+    border: none;
+    width: 120px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 7px;
+}
+
+
 @media (max-width: 850px) {
     .oeuvre {
         width: 50%;
@@ -125,5 +161,10 @@ footer {
 
     #logo {
         width: 200px;
+    }
+
+    header ul {
+        flex-direction: column;
+        gap: 0;
     }
 }
