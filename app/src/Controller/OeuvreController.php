@@ -16,7 +16,7 @@ class OeuvreController {
                 break;
             }
         }
-        if($oeuvre=null) {
+        if($oeuvre===null) {
             return header('Location: /');
         }
         echo $this->twig->render("oeuvre.html.twig", ['oeuvre' => $oeuvre]);
