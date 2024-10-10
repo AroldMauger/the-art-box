@@ -25,6 +25,25 @@
         $controller->show($id);
     });
 
+    $router->map('POST', '/validate', function() use ($controller) {
+        $controller->validateForm();
+
+    });
+
+    $router->map('POST', '/delete/[i:id]', function($id) use ($controller) {
+        $controller->delete($id);
+    });
+
+    $router->map('POST', '/update/[i:id]', function($id) use ($controller) {
+        $controller->update($id);
+    });
+
+    $router->map('GET', '/update/[i:id]', function($id) use ($controller) {
+        $controller->displayUpdateForm($id);
+    });
+
+
+
 
 
 $match = $router->match();

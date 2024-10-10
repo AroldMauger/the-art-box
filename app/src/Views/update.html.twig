@@ -1,0 +1,26 @@
+{% include 'header.html.twig' %}
+
+<form action="/update/{{ oeuvre.id }}" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="champ-formulaire">
+        <label for="titre">Titre de l'œuvre</label>
+        <input type="text" name="titre" id="titre" value="{{ oeuvre.titre }}">
+    </div>
+    <div class="champ-formulaire">
+        <label for="artiste">Auteur de l'œuvre</label>
+        <input type="text" name="artiste" id="artiste" value="{{ oeuvre.artiste }}">
+    </div>
+    <div class="champ-formulaire">
+        <label for="image">URL de l'image</label>
+        <input type="url" name="image" id="image" value="{{ oeuvre.image }}">
+    </div>
+    <div class="champ-formulaire">
+        <label for="description">Description</label>
+        <textarea name="description" id="description">{{ oeuvre.description }}</textarea>
+    </div>
+
+    <input type="submit" value="Valider">
+</form>
+
+
+{% include 'footer.html.twig' %}
