@@ -74,3 +74,13 @@ services:
       - ./mysqldata:/var/lib/mysql
     networks:
       - default
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - '8094:80'
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: database
+      PMA_USER: 'user'
+      PMA_PASSWORD: 'password'

@@ -4,12 +4,14 @@
     require_once '../vendor/autoload.php';
     require_once '../src/Controller/OeuvreController.php';
 
+
     $loader = new \Twig\Loader\FilesystemLoader('../src/Views');
     $twig = new \Twig\Environment($loader);
 
     $router = new AltoRouter();
 
     $controller = new OeuvreController($twig);
+
 
     $router->map('GET', '/', function() use ($controller){
         $controller->index();

@@ -1,5 +1,5 @@
 <?php
-
+require_once '../src/config/bdd.php';
 class OeuvreController {
 
     private $twig;
@@ -8,14 +8,11 @@ class OeuvreController {
         $this->twig = $twig;
     }
     public function show($id) {
-        $oeuvres = include('oeuvres.php');
-        $oeuvre = null;
-        foreach ($oeuvres as $o) {
-            if ($id == $o['id']) {
-                $oeuvre = $o;
-                break;
-            }
-        }
+        $bdd = connexion();
+        $requete = $bdd->prepare('SELECT * FROM oeuvres WHERE id = ?');
+        $requete->execute([$id]);
+        $oeuvre = $requete->fetch();
+
         if($oeuvre===null) {
             return header('Location: /');
         }
@@ -23,13 +20,13 @@ class OeuvreController {
     }
 
     public function index() {
-        $oeuvres = include('oeuvres.php');
+        $bdd = connexion();
+        $oeuvres = $bdd->query('SELECT * FROM oeuvres');
         echo $this->twig->render("index.html.twig", ['oeuvres' => $oeuvres]);
     }
 
     public function displayForm() {
-        $oeuvres = include('oeuvres.php');
 
-        echo $this->twig->render("add.html.twig", ['oeuvres' => $oeuvres]);
+        echo $this->twig->render("add.html.twig");
     }
 }
