@@ -13,8 +13,9 @@ class OeuvreController {
         $requete->execute([$id]);
         $oeuvre = $requete->fetch();
 
-        if($oeuvre===null) {
+        if ($oeuvre === false) {
             return header('Location: /');
+            exit();
         }
         echo $this->twig->render("oeuvre.html.twig", ['oeuvre' => $oeuvre]);
     }

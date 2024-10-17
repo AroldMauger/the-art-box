@@ -12,13 +12,16 @@
             </p>
         </div>
     </article>
-    <a href="/update/{{ oeuvre.id }}">
-        <button>Modifier</button>
-    </a>
 
-    <form action="/delete/{{ oeuvre.id }}" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <button>Supprimer</button>
-    </form>
+    <div class="button-group">
+        <a href="/update/{{ oeuvre.id }}" class="modify-btn">
+            <button class="btn btn-modify">Modifier</button>
+        </a>
+
+        <form action="/delete/{{ oeuvre.id }}" method="POST" class="delete-form">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-delete">Supprimer</button>
+        </form>
+    </div>
 </main>
 {% include 'footer.html.twig' %}

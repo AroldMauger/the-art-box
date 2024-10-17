@@ -2,13 +2,13 @@
 
 html, body {
     margin: 0;
+    padding: 0;
 }
 
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
 
 a {
     text-decoration: none;
@@ -38,6 +38,7 @@ header ul {
 main {
     max-width: 1080px;
     margin: auto;
+    padding: 20px;
 }
 
 footer {
@@ -45,13 +46,49 @@ footer {
     font-size: 12px;
 }
 
-
-
-#liste-oeuvres {
+/* Boutons Modifier et Supprimer */
+.button-group {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.modify-btn {
+    width: 150px;
+}
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    width: 100%;
+    margin: 0 5px;
 }
 
+.btn-modify {
+    background-color: #4CAF50; /* Vert */
+    color: white;
+}
+
+.btn-delete {
+    background-color: #f44336; /* Rouge */
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-modify:hover {
+    background-color: #45a049;
+}
+
+.btn-delete:hover {
+    background-color: #e53935;
+}
 .oeuvre {
     width: 33.33%;
     padding: 15px;
@@ -74,12 +111,14 @@ footer {
     margin-top: 0;
     font-size: 12px;
     margin-bottom: 20px;
+    text-align: justify;
 }
 
+/* Détails de l'œuvre */
 #detail-oeuvre {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
+    align-items: center;
     margin-bottom: 100px;
     margin-top: 75px;
     font-size: 14px;
@@ -100,6 +139,21 @@ footer {
     max-width: 470px;
 }
 
+.description {
+    font-style: italic;
+    font-size: 12px;
+    margin-bottom: 20px;
+    text-align: justify;
+
+}
+
+.description-complete {
+    text-align: justify;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Formulaires et boutons */
 form {
     max-width: 500px;
     margin: auto;
@@ -108,14 +162,27 @@ form {
     padding: 50px 10px;
 }
 
+.delete-form {
+    width: 150px;
+    padding:0px;
+}
+
 .champ-formulaire {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
 }
 
+#liste-oeuvres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 form input, form textarea {
-    padding: 7px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 form textarea {
@@ -130,13 +197,21 @@ input[type="submit"] {
     width: 120px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    padding: 7px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+input[type="submit"]:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
 
+/* Adaptation pour écrans plus petits */
 @media (max-width: 850px) {
-    .oeuvre {
-        width: 50%;
+    #detail-oeuvre {
+        flex-direction: column;
     }
 
     #img-oeuvre {
@@ -155,8 +230,12 @@ input[type="submit"] {
 }
 
 @media (max-width: 600px) {
-    .oeuvre {
-        width: 100%;
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        margin-bottom: 10px;
     }
 
     #logo {
