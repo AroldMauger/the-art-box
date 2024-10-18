@@ -13,7 +13,7 @@ class OeuvreController {
         $requete->execute([$id]);
         $oeuvre = $requete->fetch();
 
-        if ($oeuvre === false) {
+        if (!$oeuvre) {
             return header('Location: /');
             exit();
         }
@@ -37,9 +37,9 @@ class OeuvreController {
         $requete->execute([$id]);
         $oeuvre = $requete->fetch();
 
-        if ($oeuvre === null) {
+        if (!$oeuvre) {
             header('Location: /');
-            exit;
+            return;
         }
 
         echo $this->twig->render("update.html.twig", ['oeuvre' => $oeuvre]);
@@ -47,16 +47,24 @@ class OeuvreController {
 
 
     public function validateForm() {
-        if (empty($_POST['titre']) || empty($_POST['description']) || empty($_POST['artiste']) || empty($_POST['image'])
-            || strlen($_POST['description']) < 3
-            || !filter_var($_POST['image'], FILTER_VALIDATE_URL)) {
+
+        $titre = trim($_POST['titre']);
+        $description = trim($_POST['description']);
+        $artiste = trim($_POST['artiste']);
+        $image = trim($_POST['image']);
+
+        if (empty($titre) || empty($description) || empty($artiste) || empty($image)
+            || strlen($titre) < 3
+            || strlen($description) < 3
+            || strlen($artiste) < 3
+            || !filter_var($image, FILTER_VALIDATE_URL)) {
 
             header('Location: /add');
         } else {
-            $titre = htmlspecialchars($_POST['titre']);
-            $description = htmlspecialchars($_POST['description']);
-            $artiste = htmlspecialchars($_POST['artiste']);
-            $image = htmlspecialchars($_POST['image']);
+            $titre = htmlspecialchars($titre);
+            $description = htmlspecialchars($description);
+            $artiste = htmlspecialchars($artiste);
+            $image = htmlspecialchars($image);
 
             $bdd = connexion();
 
@@ -76,17 +84,44 @@ class OeuvreController {
 
     public function update($id)
     {
-            $bdd = connexion();
+        $bdd = connexion();
+        $select = $bdd->prepare('SELECT * FROM oeuvres WHERE id = ?');
+        $select->execute([$id]);
+        $select->fetch();
+
+        if ($select->rowCount() === 1) {
+
+            $titre = trim($_POST['titre']);
+            $description = trim($_POST['description']);
+            $artiste = trim($_POST['artiste']);
+            $image = trim($_POST['image']);
+
+            if (empty($titre) || empty($description) || empty($artiste) || empty($image)
+                || strlen($titre) < 3
+                || strlen($description) < 3
+                || strlen($artiste) < 3
+                || !filter_var($image, FILTER_VALIDATE_URL)) {
+
+                header('Location: /');
+                exit;
+            }
+
             $requete = $bdd->prepare('UPDATE oeuvres SET titre = ?, description = ?, artiste = ?, image = ? WHERE id = ?');
             $requete->execute([
-                htmlspecialchars($_POST['titre']),
-                htmlspecialchars($_POST['description']),
-                htmlspecialchars($_POST['artiste']),
-                htmlspecialchars($_POST['image']),
+                htmlspecialchars($titre),
+                htmlspecialchars($description),
+                htmlspecialchars($artiste),
+                htmlspecialchars($image),
                 $id
             ]);
-         header('Location: /oeuvre/' . $id);
 
+            header('Location: /oeuvre/' . $id);
+            exit;
+        } else {
+            header('Location: /');
+            exit;
+        }
     }
+
 
 }
